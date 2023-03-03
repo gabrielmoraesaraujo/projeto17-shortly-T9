@@ -1,7 +1,7 @@
 import { db } from '../database/database.js'
 
 export async function create(req,res){
-    const { name, email, password, confirmPassworld} = res.local.cadastro
+    const { name, email, password, confirmPassworld} = res.locals.cadastro
     try{
       await db.querry(`
       INSERT INTO users (name, email, passworld, "confirmPassworld")

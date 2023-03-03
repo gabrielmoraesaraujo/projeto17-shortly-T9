@@ -3,6 +3,7 @@ import { createCadastroSchema } from "../schemas/cadastro.Schema.js"
 
 export async function validCadastro(req,res,next){
 
+    console.log(req.body)
     const cadastro = req.body
 
     const {error} = createCadastroSchema.validate(cadastro)
@@ -12,9 +13,9 @@ export async function validCadastro(req,res,next){
         return res.status(400).send({errors})
     }
 
-    const cadastroExists = await db.querry('SELECT * FROM users WHERE name=$1', [cadastro.name])
+    const cadastroExists = await db.query('SELECT * FROM users WHERE name=$1', [cadastro.name])
 
-    if(cadastroExists.rowCounts !=0 ) return sendStatus(409)
+    if(cadastroExists.rowCounts !=0 ) return res.sendStatus(409)
 
     res.locals.cadastro = cadastro
 

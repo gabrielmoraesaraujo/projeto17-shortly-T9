@@ -9,10 +9,10 @@ import cadastroRoutes from "./routes/cadastro.Routes.js"
 const app = express(); //Cria o servidor
 
 app.use(cors());
-app.use(express());
+app.use(express.json());
 
 app.use(cadastroRoutes);
 
 const port = process.env.PORT;
 
-app.listen(port, () => console.log('Server running in port: ${port}')); //Configura para a porta que se deve utilizar 
+app.listen(port, () => console.log(`Server running in port: ${port}`)); //Configura para a porta que se deve utilizar 
